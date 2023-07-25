@@ -21,6 +21,11 @@ button.addEventListener('click', (e) => {
     input.value = '';
 });
 
+// create arrow to go back to top of the page
+const arrow = document.createElement('arrow');
+arrow.style.backgroundColor = "black";
+
+
 
 // Render weather data to html
 async function renderWeatherData(city) {
@@ -54,7 +59,7 @@ async function renderWeatherData(city) {
     document.getElementsByClassName("current-temp-max")[0].innerHTML = "H:" + currentTempMax + "°";
     document.getElementsByClassName("current-description")[0].innerHTML = currentDescription;
     document.getElementsByClassName("current-icon")[0].innerHTML = `<img src="${currentIconUrl}" alt="weather icon">`;
-    document.getElementsByClassName("current-date-time")[0].innerHTML = 'Local Date Time: '+ currentDateTime;
+    document.getElementsByClassName("current-date-time")[0].innerHTML = currentDateTime;
     let header = document.getElementsByClassName("header")[0];
     header.style.display = "block";
     header.addEventListener('mouseover', () => {
@@ -130,20 +135,20 @@ async function renderWeatherData(city) {
         let dailyWindSpeed = data.daily[i].wind_speed; // Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
         let dailyIcon = data.daily[i].weather[0].icon; // Current weather icon id
         let dailyIconUrl = `http://openweathermap.org/img/w/${dailyIcon}.png`;
-        dailyTable[i].innerHTML = '<td>' + dailyTime + '</td>' + '<td>' + `<img src="${dailyIconUrl}" alt="weather icon">` + '</td>' + '<td>' + 'LOW' +'<br>' +dailyTempMin + '°' + '</td>' + '<td>' + 'HIGH'+'<br>' + dailyTempMax + '°' + '</td>' + '<td>'+'PRECIPITATION'+'<br>' + dailyPrecipitation + 'mm' + '</td>' + '<td>' + 'WIND'+'<br>' + dailyWindSpeed + 'mph' + '</td>';
+        dailyTable[i].innerHTML = '<td>' + dailyTime + '</td>' + '<td>' + `<img src="${dailyIconUrl}" alt="weather icon">` + '</td>' + '<td>' + 'LOW' +'<br>' +dailyTempMin + '°' + '</td>' + '<td>' + 'HIGH'+'<br>' + dailyTempMax + '°' + '</td>' + '<td>'+'PRE'+'<br>' + dailyPrecipitation + 'mm' + '</td>' + '<td>' + 'WIND'+'<br>' + dailyWindSpeed + 'mph' + '</td>';
         //Add style for mouseover and mouseout
         let row = document.getElementsByClassName("daily-table")[i];
-        row.addEventListener("mouseover", function(){
-            row.style.backgroundColor = "#a0d2eb";
-            row.style.height = "85px";
-            row.style.transition = "0.3s";
-            row.addEventListener("mouseout", function(){
-                row.style.height = "30px";
-                i % 2 == 0 ? row.style.backgroundColor = "rgba(255, 255, 255, 0.5)" : row.style.backgroundColor = "rgba(255, 255, 255, 0.3)"
-            }
-            );
-        }
-        );
+        // row.addEventListener("mouseover", function(){
+        //     row.style.backgroundColor = "#a0d2eb";
+        //     row.style.height = "85px";
+        //     row.style.transition = "0.3s";
+        //     row.addEventListener("mouseout", function(){
+        //         row.style.height = "30px";
+        //         i % 2 == 0 ? row.style.backgroundColor = "rgba(255, 255, 255, 0.5)" : row.style.backgroundColor = "rgba(255, 255, 255, 0.3)"
+        //     }
+        //     );
+        // }
+        // );
     }
     
     // Change background image based on light or dark and current weather id
