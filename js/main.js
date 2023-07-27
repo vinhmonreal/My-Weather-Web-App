@@ -2,6 +2,8 @@ import {getDateTime, changeBackGround, isDarkOrLight } from './functions.js'
 import {makeAPICall} from './api_call.js'
 
 // Hide all css div at the beginning
+const hourly = document.getElementsByClassName("hourly")[0];
+hourly.style.display = "none";
 for(let i = 0; i < 8; i++){
     document.getElementsByClassName("card")[i].style.display = "none";
 }
